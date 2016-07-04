@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Montserrat'>
+  <link rel='stylesheet' type='text/css' href='style.css'>
+  <title>RandomColors</title>
+</head>
+<body>
+  <header>
+    <a href='http://colors.jesusalberto.me' class='title'>RandomColors</a>
+    <aside id='previous-wrapper' class='hidden'>Previous: <a id='previous-color'></a></aside>
+  </header>
+  <aside id='intro'>
+    <p>Press the spacebar to get a new color</p>
+  </aside>
+  <main class='hidden'>
+    <h1 id='first' data-tooltip='Click to copy this color' data-copied='Copied to clipboard' data-type='HEX color'></h1>
+    <h2 id='second' data-type='RGB color'></h2>
+  </main>
+  <footer>
+    <p class='credits'>Made with ❤️ by <a href='http://jesusalberto.me'>Jesús Alberto</a></p>
+  </footer>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+  <script src='scripts.js'></script>
+</body>
+</html>
