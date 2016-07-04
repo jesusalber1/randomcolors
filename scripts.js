@@ -1,3 +1,4 @@
+/* Global variables */
 var _hexBase = '0123456789ABCDEF';
 var _colorLength = 6;
 var _clipboardh1 = new Clipboard('h1');
@@ -85,11 +86,13 @@ $('h1, h2').click(function() {
   }, 1500);
 });
 
+/* Switch to previous color by clicking on it */
 $('a#previous-color').click(function() {
   var previousColor = $(this).text();
   $(window).trigger($.Event('customEvent', { color : previousColor }));
 });
 
+/* Generate a color first and show instructions, later activate spacebar event */
 $(document).ready(function() {
   $(window).on('customEvent', handleColorChange);
   $(window).trigger($.Event('customEvent'));
