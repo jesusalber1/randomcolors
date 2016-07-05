@@ -98,8 +98,7 @@ $(document).ready(function() {
   /* Waiting 1.5 seconds while showing instructions */
   setTimeout(function() {
     $('main, aside#intro').toggleClass('hidden');
-    /* TODO: Mobile events */
-    /* Now we also handle spacebar event */
+    /* Now we also handle spacebar event  and touchend (if mobile) */
     $(window).on('keyup touchend', handleColorChange);
   }, 1500);
 });

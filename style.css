@@ -143,6 +143,7 @@ footer p.credits {
   width: 100%;
 }
 
+/* Media queries, only mobiles */
 @media only screen and (max-device-width : 736px) {
   html {
     font-size: 16px;
