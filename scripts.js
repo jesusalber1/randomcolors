@@ -32,7 +32,6 @@ function hexToRgb(hex) {
       blue:   parseInt(splitted[3], 16)
     };
   }
-
   return null;
 }
 
@@ -47,7 +46,7 @@ function fontColorByBackground(hex) {
 /* Spacebar event -> Generate new color (it will be binded on document.ready): $(window).keyup(···) */
 function handleColorChange(event) {
   /* We get a customEvent or keyup (spacebar) */
-  if (event.type === 'customEvent'
+  if (event.type === 'customEvent' || event.type === 'touchend'
       || (event.type === 'keyup' && (event.keyCode === 0 || event.keyCode === 32))) {
     /* Check if there is a previous color and show it */
     if (!!( _previousColor = $('h1').attr('data-clipboard-text'))) {
@@ -101,6 +100,6 @@ $(document).ready(function() {
     $('main, aside#intro').toggleClass('hidden');
     /* TODO: Mobile events */
     /* Now we also handle spacebar event */
-    $(window).on('keyup', handleColorChange);
+    $(window).on('keyup touchend', handleColorChange);
   }, 1500);
 });
