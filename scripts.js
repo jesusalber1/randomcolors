@@ -68,6 +68,9 @@ function handleColorChange(event) {
             .attr('data-clipboard-text', newColorRGB);
     $('body') .css('background-color', newColor)
               .css('color', fontColorByBackground(newColor));
+
+    /* Update color in URL */
+    window.location.hash = newColor;
   }
 }
 
