@@ -27,9 +27,9 @@ function hexToRgb(hex) {
   var splitted;
   if (splitted = /^#([a-f0-9]{2})([a-f0-9]{2})([a-f0-9]{2})$/i.exec(hex)) {
     return {
-      red:    parseInt(splitted[1], 16),
-      green:  parseInt(splitted[2], 16),
-      blue:   parseInt(splitted[3], 16)
+      red: parseInt(splitted[1], 16),
+      green: parseInt(splitted[2], 16),
+      blue: parseInt(splitted[3], 16)
     };
   }
   return null;
@@ -39,14 +39,17 @@ function hexToRgb(hex) {
 function fontColorByBackground(hex) {
   /* Source: http://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color/3943023#3943023 */
   var rgb = hexToRgb(hex);
-  if (rgb === null) console.log('error ' + hex);
+  if (rgb === null) {
+    console.log('error ' + hex);
+    return '#FFF'; // white by default
+  }
   return ((rgb.red*0.299 + rgb.green*0.587 + rgb.blue*0.114) > 186) ? '#333' : '#FFF';
 }
 
 /* Spacebar event -> Generate new color (it will be binded on document.ready): $(window).keyup(···) */
 function handleColorChange(event) {
   /* We get a customEvent or keyup (spacebar) */
-  if (event.type === 'customEvent' || event.type === 'touchend'
+  if ((event.type === 'customEvent') || (event.type === 'touchend')
       || (event.type === 'keyup' && (event.keyCode === 0 || event.keyCode === 32))) {
     /* Check if there is a previous color and show it */
     if (!!( _previousColor = $('h1').attr('data-clipboard-text'))) {
@@ -94,7 +97,19 @@ $('a#previous-color').click(function() {
 /* Generate a color first and show instructions, later activate spacebar event */
 $(document).ready(function() {
   $(window).on('customEvent', handleColorChange);
-  $(window).trigger($.Event('customEvent'));
+
+  /* Check if there is a color in the URL (shared) */
+  var urlColor = window.location.hash;
+  if (urlColor) {
+    if (/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/.test(urlColor)) {
+      $(window).trigger($.Event('customEvent', { color : urlColor })); // Show new color
+    } else {
+      $(window).trigger($.Event('customEvent')); // Generate a new color
+    }
+  } else {
+    $(window).trigger($.Event('customEvent')); // Generate a new color
+  }
+  
   /* Waiting 1.5 seconds while showing instructions */
   setTimeout(function() {
     $('main, aside#intro').toggleClass('hidden');
