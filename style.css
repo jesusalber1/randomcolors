@@ -140,10 +140,11 @@ footer {
 
 footer p.credits {
   font-size: 0.6rem;
+  margin-bottom: .5rem;
   width: 100%;
 }
 
-/* Media queries, only mobiles */
+/* Media queries, mobile only */
 @media only screen and (max-device-width : 736px) {
   html {
     font-size: 16px;
