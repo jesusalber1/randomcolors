@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "name": "random-colors",
+  "public": true,
+  "builds": [
+      { "src": "package.json", "use": "@now/static" }
+  ]
+}
